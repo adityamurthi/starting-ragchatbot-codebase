@@ -1,0 +1,18 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(find:*)",
+            "Bash(git add:*)",
+            "Bash(git commit:*)",
+            "mcp__playwright__browser_navigate",
+            "mcp__playwright__browser_take_screenshot",
+            "Bash(mkdir:*)",
+            "Bash(python -m pytest --version)",
+            "Bash(uv run:*)",
+            "Bash(uv add:*)",
+            "Bash(python -m pytest tests/test_ai_generator.py -v)",
+            "Bash(python3 -m pytest tests/test_ai_generator.py -v)"
+        ],
+        "deny": []
+    }
+}
