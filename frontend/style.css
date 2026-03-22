@@ -26,6 +26,34 @@
   --welcome-border: #2563eb;
 }
 
+/* Light Mode Variables */
+body.light-mode {
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-hover: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --assistant-message: #f1f5f9;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+    --welcome-bg: #eff6ff;
+    --welcome-border: #2563eb;
+    --focus-ring: rgba(37, 99, 235, 0.15);
+}
+
+/* Smooth theme transitions on key layout elements */
+body,
+.sidebar,
+.chat-main,
+.chat-container,
+.chat-messages,
+.chat-input-container,
+.message-content,
+.stat-item,
+.course-stats {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 /* Base Styles */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
@@ -765,3 +793,62 @@ details[open] .suggested-header::before {
     width: 280px;
   }
 }
+
+/* ── Theme Toggle ─────────────────────────────────────────── */
+
+/* Container row at the top of the sidebar */
+.sidebar-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+/* Circular icon button */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--background);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* own transition so it doesn't interfere with icon transitions */
+    transition: background-color 0.3s ease, color 0.3s ease,
+                border-color 0.3s ease, transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--surface-hover);
+    transform: rotate(15deg);
+}
+
+.theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.theme-toggle:active {
+    transform: scale(0.88);
+}
+
+/* Both icons sit in the same spot; only one is visible at a time */
+.theme-toggle .icon {
+    position: absolute;
+    transition: opacity 0.25s ease, transform 0.35s ease;
+}
+
+/* Dark mode (default): sun visible, moon hidden */
+.sun-icon  { opacity: 1; transform: rotate(0deg)   scale(1);   }
+.moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+
+/* Light mode: moon visible, sun hidden */
+body.light-mode .sun-icon  { opacity: 0; transform: rotate(90deg)  scale(0.5); }
+body.light-mode .moon-icon { opacity: 1; transform: rotate(0deg)   scale(1);   }
